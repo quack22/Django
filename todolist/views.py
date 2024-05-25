@@ -25,6 +25,6 @@ def update(request, todo_id):
     return HttpResponseRedirect(reverse('todo-index'))
 
 def delete(request, todo_id):
-    todo_item = get_object_or_404(todo, pk=todo_id)
+    todo_item = get_object_or_404(Todo, pk=todo_id)
     todo_item.delete()
-    return redirect('todolist::todo_list')
+    return redirect('todo-index')

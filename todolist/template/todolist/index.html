@@ -14,7 +14,7 @@
                 <h1 class="p-2 text-primary text-center border-bottom">
                     Todo List
                 </h1>
-                <form action="{% url 'todo-add' %}" method="post">
+                <form action="{% url 'todolist:todo-add' %}" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="todo" placeholder="Enter your new todo">
@@ -26,22 +26,25 @@
                     {% for item in todos %}
 
                         <li class="list-group-item d-flex justify-content-between">
-                            <a href="" class="btn btn-outline-danger">Delete</a>
+                            <form action="{% url 'todolist:todo-delete' item.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                            </form>
 
                             {% if item.status %}
 
                                 <p class="my-auto">
                                     <del>{{ item.text }}</del>
                                 </p>
-                                <a href="{% url 'todo-update' item.id %}" class="btn btn-outline-primary">Redo</a>
+                                <a href="{% url 'todolist:todo-update' item.id %}" class="btn btn-outline-primary">Redo</a>
 
                             {% else %}
 
                                 <p class="my-auto">{{ item.text }}</p>
-                                <a href="{% url 'todo-update' item.id %}" class="btn btn-outline-secondary">Done</a>
+                                <a href="{% url 'todolist:todo-update' item.id %}" class="btn btn-outline-secondary">Done</a>
 
                             {% endif %}
-                            
+
                         </li>
 
                     {% endfor %}
