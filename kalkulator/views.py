@@ -1,10 +1,31 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 
 def tambah(request, num1, num2):
     context = {
         'title': 'Kalkulator Tambah',
-        'result': f"{num1} + {num2} = {num1+num2}",
+        'result': f"{num1} + {num2} = {num1 + num2}",
+    }
+    return render(request, 'kalkulator/index.html', context)
+
+def kurang(request, num1, num2):
+    context = {
+        'title': 'Kalkulator Kurang',
+        'result': f"{num1} - {num2} = {num1 - num2}",
+    }
+    return render(request, 'kalkulator/index.html', context)
+
+def kali(request, num1, num2):
+    context = {
+        'title': 'Kalkulator Kali',
+        'result': f"{num1} * {num2} = {num1 * num2}",
+    }
+    return render(request, 'kalkulator/index.html', context)
+
+def bagi(request, num1, num2):
+    context = {
+        'title': 'Kalkulator Bagi',
+        'result': f"{num1} / {num2} = {num1 / num2}",
     }
     return render(request, 'kalkulator/index.html', context)
